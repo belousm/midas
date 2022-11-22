@@ -5,6 +5,47 @@ If you have question about this project, please, reach out me in [telegram](http
 
 To test the functionality of the code, try to run it with different configurations, follow these steps:
 
+### Structure of project
+
+├──LICENSE
+├──README.md
+├──dvc.lock
+├──dvc.yaml
+├──pyproject.toml
+├──poetry.lock
+├──data
+│   ├──raw
+│   │   └──BTCUSD_1_min_aver-src_cb_disk_.feather
+│   ├──processed
+│   │   ├──processed_trend_detection.feather
+│   │   └──processed_volume_anomaly.feather
+│   └──result
+│       ├──result_trend_detection.feather
+│       ├──result_volume_anomaly.feather
+│       └──result_with_trend_and_anomaly.feather
+├──notebooks
+│   └──test_functions.ipynb
+├──reports
+│   ├──trends
+│   └──volumes
+└──src
+    ├──feature
+    │   ├──preprocessing_for_trend_detection.py
+    │   └──preprocessing_for_volume_anomaly.py
+    ├──models
+    │   ├──concat.py
+    │   ├──trend_detection.py
+    │   └──volume_anomaly.py
+    ├──utils
+    │   ├──exception.py──exception.py
+    │   └──logger.py
+    └──visualization
+        ├──plots_for_trend.py
+        └──plots_for_volume.py
+
+
+
+
 
 ### Stepd to run code
 1. Clone repo 

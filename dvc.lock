@@ -21,6 +21,7 @@ stages:
           processed_trend_detection: ${PATH_TO_TEST_MIDAS}/data/processed/processed_trend_detection.feather
           result_volume_anomaly: ${PATH_TO_TEST_MIDAS}/data/result/result_volume_anomaly.feather
           result_trend_detection: ${PATH_TO_TEST_MIDAS}/data/result/result_trend_detection.feather
+          result_with_trend_and_anomaly: ${PATH_TO_TEST_MIDAS}/data/result/result_with_trend_and_anomaly.feather
         featurize:
           volume_anomaly:
             gap_end_date: 28800
@@ -40,6 +41,7 @@ stages:
             - 3600
             - 5400
             - 7200
+            column_with_anomaly: volume_anomaly
           trend_detection:
             decay_sm: 720
             decay_lm: 1560
@@ -51,6 +53,7 @@ stages:
             window_size_for_rolling_mean: 150
             left_border_for_flat_detection: -0.0007
             right_border_for_flat_detection: 0.0007
+            column_with_trend: trend
     outs:
     - path: data/processed/processed_volume_anomaly.feather
       md5: 3b8537e86bca7b2730de70f4980d4274
@@ -63,8 +66,8 @@ stages:
       md5: 3b8537e86bca7b2730de70f4980d4274
       size: 282556098
     - path: src/models/volume_anomaly.py
-      md5: f308168ae7b401bb167875cdada5f2bb
-      size: 6344
+      md5: c5372817c4e94304c53945e038ae8d1a
+      size: 6510
     params:
       params.yaml:
         base:
@@ -76,6 +79,7 @@ stages:
           processed_trend_detection: ${PATH_TO_TEST_MIDAS}/data/processed/processed_trend_detection.feather
           result_volume_anomaly: ${PATH_TO_TEST_MIDAS}/data/result/result_volume_anomaly.feather
           result_trend_detection: ${PATH_TO_TEST_MIDAS}/data/result/result_trend_detection.feather
+          result_with_trend_and_anomaly: ${PATH_TO_TEST_MIDAS}/data/result/result_with_trend_and_anomaly.feather
         featurize:
           volume_anomaly:
             gap_end_date: 28800
@@ -95,6 +99,7 @@ stages:
             - 3600
             - 5400
             - 7200
+            column_with_anomaly: volume_anomaly
           trend_detection:
             decay_sm: 720
             decay_lm: 1560
@@ -106,6 +111,7 @@ stages:
             window_size_for_rolling_mean: 150
             left_border_for_flat_detection: -0.0007
             right_border_for_flat_detection: 0.0007
+            column_with_trend: trend
     outs:
     - path: data/result/result_volume_anomaly.feather
       md5: 957e293cbf39c7e04ba98e49fb3de596
@@ -131,6 +137,7 @@ stages:
           processed_trend_detection: ${PATH_TO_TEST_MIDAS}/data/processed/processed_trend_detection.feather
           result_volume_anomaly: ${PATH_TO_TEST_MIDAS}/data/result/result_volume_anomaly.feather
           result_trend_detection: ${PATH_TO_TEST_MIDAS}/data/result/result_trend_detection.feather
+          result_with_trend_and_anomaly: ${PATH_TO_TEST_MIDAS}/data/result/result_with_trend_and_anomaly.feather
         featurize:
           volume_anomaly:
             gap_end_date: 28800
@@ -150,6 +157,7 @@ stages:
             - 3600
             - 5400
             - 7200
+            column_with_anomaly: volume_anomaly
           trend_detection:
             decay_sm: 720
             decay_lm: 1560
@@ -161,6 +169,7 @@ stages:
             window_size_for_rolling_mean: 150
             left_border_for_flat_detection: -0.0007
             right_border_for_flat_detection: 0.0007
+            column_with_trend: trend
     outs:
     - path: data/processed/processed_trend_detection.feather
       md5: 36ab68956a05e27bc01389f7cd74b236
@@ -173,8 +182,8 @@ stages:
       md5: 36ab68956a05e27bc01389f7cd74b236
       size: 193056434
     - path: src/models/trend_detection.py
-      md5: e10ae2d772791517a9a2f9fbf5323a44
-      size: 6776
+      md5: 8de3da5d9b73630b6319b1f415b2f1a7
+      size: 6995
     params:
       params.yaml:
         base:
@@ -186,6 +195,7 @@ stages:
           processed_trend_detection: ${PATH_TO_TEST_MIDAS}/data/processed/processed_trend_detection.feather
           result_volume_anomaly: ${PATH_TO_TEST_MIDAS}/data/result/result_volume_anomaly.feather
           result_trend_detection: ${PATH_TO_TEST_MIDAS}/data/result/result_trend_detection.feather
+          result_with_trend_and_anomaly: ${PATH_TO_TEST_MIDAS}/data/result/result_with_trend_and_anomaly.feather
         featurize:
           volume_anomaly:
             gap_end_date: 28800
@@ -205,6 +215,7 @@ stages:
             - 3600
             - 5400
             - 7200
+            column_with_anomaly: volume_anomaly
           trend_detection:
             decay_sm: 720
             decay_lm: 1560
@@ -216,12 +227,13 @@ stages:
             window_size_for_rolling_mean: 150
             left_border_for_flat_detection: -0.0007
             right_border_for_flat_detection: 0.0007
+            column_with_trend: trend
     outs:
     - path: data/result/result_trend_detection.feather
       md5: a69ea01d325c1db150f5928af91b2b96
       size: 148352106
   concat:
-    cmd: poetry run python ./src/models/concat.py --config=./params.yaml --config=params.yaml
+    cmd: poetry run python $(dvc root)/src/models/concat.py --config=$(dvc root)/params.yaml
     deps:
     - path: data/result/result_trend_detection.feather
       md5: a69ea01d325c1db150f5928af91b2b96
@@ -230,8 +242,8 @@ stages:
       md5: 957e293cbf39c7e04ba98e49fb3de596
       size: 133346778
     - path: src/models/concat.py
-      md5: 059f6cf4f059426f1002e2b7647ed393
-      size: 1746
+      md5: 20d08b70669e59cac6e21132046ebae6
+      size: 1743
     params:
       params.yaml:
         base:
@@ -338,8 +350,8 @@ stages:
         reports:
           path_to_trend_png: ${PATH_TO_TEST_MIDAS}/reports/trends/
   plots_for_volume:
-    cmd: poetry run python ./src/visualization/plots_for_volume.py --config=./params.yaml
-      --config=params.yaml
+    cmd: poetry run python $(dvc root)/src/visualization/plots_for_volume.py --config=$(dvc
+      root)/params.yaml --config=params.yaml
     deps:
     - path: data/result/result_with_trend_and_anomaly.feather
       md5: 5e721e961bdb98df71cb6a30e6dd69aa

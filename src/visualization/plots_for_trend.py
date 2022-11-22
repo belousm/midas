@@ -45,7 +45,7 @@ def plot_stock_with_trends(config_path: Text):
 
     intervals = [(i, i + step) for i in range(0, len_of_indices - step, step)]
     logger.info(f"Number of intervals {len(intervals)}")
-    main_path = config["reports"]["path_to_trend_png"]["path_to_trend_png"]
+    main_path = config["reports"]["trend_detection"]["path_to_trend_png"]
     colors = config["reports"]["trend_detection"]["colors"]
     logger.info(f"Will use next colors: {colors}")
     for number, period in enumerate(intervals):

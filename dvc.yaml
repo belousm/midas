@@ -49,7 +49,7 @@ stages:
     - data/result/result_trend_detection.feather
 
   concat:
-    cmd: poetry run python ./src/models/concat.py --config=./params.yaml --config=params.yaml
+    cmd: poetry run python $(dvc root)/src/models/concat.py --config=$(dvc root)/params.yaml
     deps:
     - data/result/result_trend_detection.feather
     - data/result/result_volume_anomaly.feather
@@ -61,7 +61,7 @@ stages:
     outs:
     - data/result/result_with_trend_and_anomaly.feather
   plots_for_trend:
-    cmd: poetry run python ./src/visualization/plots_for_trend.py --config=./params.yaml
+    cmd: poetry run python $(dvc root)/src/visualization/plots_for_trend.py --config=$(dvc root)/params.yaml
       --config=params.yaml
     deps:
     - data/result/result_with_trend_and_anomaly.feather
@@ -72,7 +72,7 @@ stages:
     - featurize
     - reports
   plots_for_volume:
-    cmd: poetry run python ./src/visualization/plots_for_volume.py --config=./params.yaml
+    cmd: poetry run python $(dvc root)/src/visualization/plots_for_volume.py --config=$(dvc root)/params.yaml
       --config=params.yaml
     deps:
     - data/result/result_with_trend_and_anomaly.feather
