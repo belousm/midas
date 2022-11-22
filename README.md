@@ -38,7 +38,7 @@ To test the functionality of the code, try to run it with different configuratio
     │   ├──trend_detection.py
     │   └──volume_anomaly.py
     ├──utils
-    │   ├──exception.py──exception.py
+    │   ├──exception.py
     │   └──logger.py
     └──visualization
         ├──plots_for_trend.py
