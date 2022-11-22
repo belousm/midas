@@ -1,7 +1,7 @@
 # test-midas
 
 Dear reviewer, glad to welcome you to this project.
-If you have question about this project, please, reach out me in [telegram](https://t.me/belousm).
+If you have question about it, please, reach out me in [telegram](https://t.me/belousm).
 
 To test the functionality of the code, try to run it with different configurations, follow these steps:
 
