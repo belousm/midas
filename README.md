@@ -1,9 +1,12 @@
 # test-midas
 
 Dear reviewer, glad to welcome you to this project.
+If you have question about this project, please, reach out me in [telegram](https://t.me/belousm).
 
 To test the functionality of the code, try to run it with different configurations, follow these steps:
 
+
+### Stepd to run code
 1. Clone repo 
 ```
 git clone git@github.com:belousm/midas.git
@@ -46,4 +49,18 @@ Also you can run any step from jupyter notebook using this command:
 poetry run python $(dvc root)/src/{path_to_file} --config=$(dvc root)/params.yaml
 ```
 
+### Data download
+If you want to check already calculated data that has been produces, then you can run:
+```
+dvc pull
+```
+
+### Model setup
 All parameters for modilng are stored in [params.yaml](https://github.com/belousm/midas/blob/master/params.yaml). So you can easily adjust model parameters.
+
+### Examples result data
+![alt text](https://i.imgur.com/MX2iZMC.png)
+![alt text](https://i.imgur.com/mZat64b.png)
+![alt text](https://i.imgur.com/ldAD5bI.png)
+![alt text](https://i.imgur.com/sTpN7BO.png)
+![alt text](https://i.imgur.com/ayw94ME.png)
