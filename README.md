@@ -6,6 +6,7 @@ If you have question about this project, please, reach out me in [telegram](http
 To test the functionality of the code, try to run it with different configurations, follow these steps:
 
 ### Structure of project
+```
 
 ├──LICENSE
 ├──README.md
@@ -43,9 +44,7 @@ To test the functionality of the code, try to run it with different configuratio
         ├──plots_for_trend.py
         └──plots_for_volume.py
 
-
-
-
+```
 
 ### Stepd to run code
 1. Clone repo 
