@@ -1,4 +1,12 @@
-# test-midas
+# Trend and volume anomaly detection
+
+- [Welcome](#welcome)
+- [Structure of project](#structure-of-project)
+- [Steps to run project](#steps-to-run-project)
+- [Model setup](#model-setup)
+- [Examples of results](#examples-of-results)
+    - [Examples for trend](#examples-for-trend)
+    - [Examples for volume](#examples-for-volume)
 
 Dear reviewer, glad to welcome you to this project.
 If you have question about it, please, reach out me in [telegram](https://t.me/belousm).
@@ -46,13 +54,13 @@ To test the functionality of the code, try to run it with different configuratio
 
 ```
 
-### Stepd to run code
+### Steps to run project
 1. Clone repo 
 ```
 git clone git@github.com:belousm/midas.git
 ```
 
-2. Jump into progect repo 
+2. Jump into project repo 
 ```
 cd midas
 ```
@@ -60,10 +68,23 @@ cd midas
 ```
 poetry install
 ```
-P.S.  If you don't have poetry you can install it by this command:
-```
-curl -sSL https://install.python-poetry.org | python3 -
-```
+
+>P.S.  If you don't have poetry you can install it by this command:
+
+>```
+>curl -sSL https://install.python-poetry.org | python3 -
+>```
+
+4. Download initial data
+
+    You can do it with 2 ways:
+
+    * Upload file `BTCUSD_1_min_aver-src_cb_disk_.feather` to [data/raw](https://github.com/belousm/midas/tree/master/data/raw) folder.
+    * Upload data using dvc:
+    ```
+    dvc pull 
+    ```
+
 4. Set an environment variable with the path to the project
 ```
 export PATH_TO_TEST_MIDAS=$PWD
@@ -93,16 +114,10 @@ Also you can run any step from jupyter notebook using this command:
 poetry run python $(dvc root)/src/{path_to_file} --config=$(dvc root)/params.yaml
 ```
 
-### Data download
-If you want to check already calculated data that has been produces, then you can run:
-```
-dvc pull
-```
-
 ### Model setup
 All parameters for modilng are stored in [params.yaml](https://github.com/belousm/midas/blob/master/params.yaml). So you can easily adjust model parameters.
 
-### Examples result data
+### Examples of results
 #### Examples for trend
 ![alt text](https://i.imgur.com/BWHVnH0.png)
 ![alt text](https://i.imgur.com/mM3uTLZ.png)
