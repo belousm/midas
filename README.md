@@ -60,6 +60,10 @@ cd midas
 ```
 poetry install
 ```
+P.S.  If you don't have poetry you can install it by thos command:
+```
+curl -sSL https://install.python-poetry.org | python3 -
+```
 4. Set an environment variable with the path to the project
 ```
 export PATH_TO_TEST_MIDAS=$PWD
