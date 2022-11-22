@@ -6,12 +6,12 @@ To test the functionality of the code, try to run it with different configuratio
 
 1. Clone repo 
 ```
-git clone ...
+git clone git@github.com:belousm/midas.git
 ```
 
 2. Jump into progect repo 
 ```
-cd repo
+cd midas
 ```
 3. Install all dependencies 
 ```
