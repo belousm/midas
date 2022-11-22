@@ -1,0 +1,84 @@
+stages:
+  data_preprocessing_for_volume_anomaly:
+    cmd: poetry run python $(dvc root)/src/features/preprocessing_for_volume_anomaly.py
+      --config=$(dvc root)/params.yaml --config=params.yaml
+    deps:
+    - data/raw/BTCUSD_1_min_aver-src_cb_disk_.feather
+    - src/features/preprocessing_for_volume_anomaly.py
+    params:
+    - base
+    - data
+    - featurize
+    outs:
+    - data/processed/processed_volume_anomaly.feather
+  find_volume_anomaly:
+    cmd: poetry run python $(dvc root)/src/models/volume_anomaly.py --config=$(dvc
+      root)/params.yaml --config=params.yaml
+    deps:
+    - data/processed/processed_volume_anomaly.feather
+    - src/models/volume_anomaly.py
+    params:
+    - base
+    - data
+    - featurize
+    outs:
+    - data/result/result_volume_anomaly.feather
+  preprocessing_for_trend_detection:
+    cmd: poetry run python $(dvc root)/src/features/preprocessing_for_trend_detection.py
+      --config=$(dvc root)/params.yaml --config=params.yaml
+    deps:
+    - data/raw/BTCUSD_1_min_aver-src_cb_disk_.feather
+    - src/features/preprocessing_for_trend_detection.py
+    params:
+    - base
+    - data
+    - featurize
+    outs:
+    - data/processed/processed_trend_detection.feather
+  trend_detection:
+    cmd: poetry run python $(dvc root)/src/models/trend_detection.py --config=$(dvc
+      root)/params.yaml --config=params.yaml
+    deps:
+    - data/processed/processed_trend_detection.feather
+    - src/models/trend_detection.py
+    params:
+    - base
+    - data
+    - featurize
+    outs:
+    - data/result/result_trend_detection.feather
+
+  concat:
+    cmd: poetry run python ./src/models/concat.py --config=./params.yaml --config=params.yaml
+    deps:
+    - data/result/result_trend_detection.feather
+    - data/result/result_volume_anomaly.feather
+    - src/models/concat.py
+    params:
+    - base
+    - data
+    - featurize
+    outs:
+    - data/result/result_with_trend_and_anomaly.feather
+  plots_for_trend:
+    cmd: poetry run python ./src/visualization/plots_for_trend.py --config=./params.yaml
+      --config=params.yaml
+    deps:
+    - data/result/result_with_trend_and_anomaly.feather
+    - src/visualization/plots_for_trend.py
+    params:
+    - base
+    - data
+    - featurize
+    - reports
+  plots_for_volume:
+    cmd: poetry run python ./src/visualization/plots_for_volume.py --config=./params.yaml
+      --config=params.yaml
+    deps:
+    - data/result/result_with_trend_and_anomaly.feather
+    - src/visualization/plots_for_volume.py
+    params:
+    - base
+    - data
+    - featurize
+    - reports

@@ -1,0 +1,45 @@
+base:
+  log_level: INFO
+  project_path: ${PATH_TO_TEST_MIDAS}
+
+data:
+  raw: "${PATH_TO_TEST_MIDAS}/data/raw/BTCUSD_1_min_aver-src_cb_disk_.feather"
+  processed_volume_anomaly: '${PATH_TO_TEST_MIDAS}/data/processed/processed_volume_anomaly.feather'
+  processed_trend_detection: '${PATH_TO_TEST_MIDAS}/data/processed/processed_trend_detection.feather'
+  result_volume_anomaly: '${PATH_TO_TEST_MIDAS}/data/result/result_volume_anomaly.feather'
+  result_trend_detection: '${PATH_TO_TEST_MIDAS}/data/result/result_trend_detection.feather'
+  result_with_trend_and_anomaly: '${PATH_TO_TEST_MIDAS}/data/result/result_with_trend_and_anomaly.feather'
+
+featurize:
+  volume_anomaly:
+    gap_end_date: 28800
+    step_to_end_date: 1200
+    thresholds: [0.8, 0.7, 0.5, 0.3]
+    laps: [3, 6, 9]
+    mean_indicator: 600
+    threshold_indicator: 0.1
+    columns_rolling_mean: [3600, 5400, 7200]
+    column_with_anomaly: "volume_anomaly"
+  trend_detection:
+    decay_sm: 720
+    decay_lm: 1560
+    decay_signal: 9
+    period_signal: 9
+    column_for_macd: "close"
+    order_for_fall_rise: 1000
+    order_for_flat: 5
+    window_size_for_rolling_mean: 150
+    left_border_for_flat_detection: -0.0007
+    right_border_for_flat_detection: 0.0007
+    column_with_trend: "trend"
+
+reports:
+  trend_detection: 
+    step: 14
+    path_to_trend_png: '${PATH_TO_TEST_MIDAS}/reports/trends/' 
+    colors: ["r", "g", "b"]
+  volume_anomaly: 
+    path_to_volume_png: '${PATH_TO_TEST_MIDAS}/reports/volumes/' 
+    step: 17
+    width_of_bar: 0.00067
+    colors: ["r", "b"]
