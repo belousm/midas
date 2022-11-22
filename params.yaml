@@ -38,6 +38,9 @@ reports:
     step: 14
     path_to_trend_png: '${PATH_TO_TEST_MIDAS}/reports/trends/' 
     colors: ["r", "g", "b"]
+    labels: ["fall", "rise", "flat"]
+    number_of_xticks: 12
+    plot_size: [18, 13]
   volume_anomaly: 
     path_to_volume_png: '${PATH_TO_TEST_MIDAS}/reports/volumes/' 
     step: 17

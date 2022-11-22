@@ -41,6 +41,7 @@ def plot_volume_with_anomaly(config_path: Text):
     colors = config["reports"]["volume_anomaly"]["colors"]
     logger.info(f"Will use next colors: {colors}")
     logger.info("Creating list with colors")
+    print(intervals)
     for _, row in data.iterrows():
         if row[column_with_anomaly]:
             colors.append(colors[0])
@@ -48,7 +49,7 @@ def plot_volume_with_anomaly(config_path: Text):
             colors.append(colors[1])
     for number, period in enumerate(intervals[:1]):
         plt.bar(
-            data[column_with_anomaly][period[0] : period[1]],
+            data["date"][period[0] : period[1]],
             data[column_with_anomaly][period[0] : period[1]],
             width=width_of_bar,
             color=colors,

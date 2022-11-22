@@ -60,7 +60,7 @@ cd midas
 ```
 poetry install
 ```
-P.S.  If you don't have poetry you can install it by thos command:
+P.S.  If you don't have poetry you can install it by this command:
 ```
 curl -sSL https://install.python-poetry.org | python3 -
 ```
@@ -103,8 +103,8 @@ dvc pull
 All parameters for modilng are stored in [params.yaml](https://github.com/belousm/midas/blob/master/params.yaml). So you can easily adjust model parameters.
 
 ### Examples result data
-![alt text](https://i.imgur.com/MX2iZMC.png)
-![alt text](https://i.imgur.com/mZat64b.png)
+#### Examples for trend
+![alt text](https://i.imgur.com/BWHVnH0.png)
+![alt text](https://i.imgur.com/mM3uTLZ.png)
+#### Examples for volume
 ![alt text](https://i.imgur.com/ldAD5bI.png)
-![alt text](https://i.imgur.com/sTpN7BO.png)
-![alt text](https://i.imgur.com/ayw94ME.png)

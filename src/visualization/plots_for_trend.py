@@ -25,7 +25,7 @@ def plot_stock_with_trends(config_path: Text):
     logger = get_logger("PLOT_TREND", log_level=config["base"]["log_level"])
     logger.info("Read data")
     data = pd.read_feather(config["data"]["result_with_trend_and_anomaly"])
-
+    data.reset_index(inplace=True)
     column_with_value = config["featurize"]["trend_detection"]["column_for_macd"]
     column_with_trend = config["featurize"]["trend_detection"]["column_with_trend"]
     logger.info(f"Column with trend {column_with_trend}")
@@ -48,13 +48,22 @@ def plot_stock_with_trends(config_path: Text):
     main_path = config["reports"]["trend_detection"]["path_to_trend_png"]
     colors = config["reports"]["trend_detection"]["colors"]
     logger.info(f"Will use next colors: {colors}")
+    labels = config["reports"]["trend_detection"]["labels"]
+    logger.info(f"Will use next labels: {labels}")
+    number_of_xticks = config["reports"]["trend_detection"]["number_of_xticks"] 
+    all_dates = data["date"]
+    step_for_dates = step // number_of_xticks
+    logger.info(f"Step for dates: {step_for_dates}")
+    plot_size = config["reports"]["trend_detection"]["plot_size"]  
     for number, period in enumerate(intervals):
+        plt.figure(figsize=(plot_size[0], plot_size[1]))
         plt.plot(
             data_fall.loc[
                 (data_fall.index >= period[0]) & (data_fall.index <= period[1]),
                 column_with_value,
             ],
             color=colors[0],
+            label=labels[0],
         )
         plt.plot(
             data_rise.loc[
@@ -62,6 +71,7 @@ def plot_stock_with_trends(config_path: Text):
                 column_with_value,
             ],
             color=colors[1],
+            label=labels[1],
         )
         plt.plot(
             data_flat.loc[
@@ -69,10 +79,19 @@ def plot_stock_with_trends(config_path: Text):
                 column_with_value,
             ],
             color=colors[2],
+            label=labels[2],
         )
+        dates = [all_dates[i+period[0]] for i in range(0, step, step_for_dates)]
+        indeces = [i+period[0] for i in range(0, step, step_for_dates)]
+        plt.xticks(indeces, dates, rotation = 45)
+        plt.xlabel("Dates")
+        plt.ylabel("Volume")
+        plt.title("BTC price with trend definition")
+        plt.legend()
         path = main_path + f"trend_{number}.png"
         logger.info(f"Path for {number} photo")
         plt.savefig(path)
+        plt.close()
         logger.info(f"Photo {number} saved")
 
 
