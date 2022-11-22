@@ -46,4 +46,4 @@ Also you can run any step from jupyter notebook using this command:
 poetry run python $(dvc root)/src/{path_to_file} --config=$(dvc root)/params.yaml
 ```
 
-All parameters for modilng are stored in [params.yaml](other_file.md). So you can easily adjust model parameters.
+All parameters for modilng are stored in [params.yaml](https://github.com/belousm/midas/blob/master/params.yaml). So you can easily adjust model parameters.
