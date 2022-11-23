@@ -85,6 +85,8 @@ poetry install
     ```
     dvc pull 
     ```
+    >P.S.  If you still have problems with loading data, then you can download a ready-made folder containing data of all types (raw, pre-processing and resulting). You can do it [here](https://drive.google.com/drive/u/0/folders/1lZEmuljNGPZEUktIAYbEziGjPbwS3znM).
+
 
 4. Set an environment variable with the path to the project
 ```
@@ -123,4 +125,4 @@ All parameters for modilng are stored in [params.yaml](https://github.com/belous
 ![alt text](https://i.imgur.com/BWHVnH0.png)
 ![alt text](https://i.imgur.com/mM3uTLZ.png)
 #### Examples for volume
-![alt text](https://i.imgur.com/ldAD5bI.png)
+![alt text](https://i.imgur.com/0dPyiol.png)

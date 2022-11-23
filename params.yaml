@@ -44,5 +44,6 @@ reports:
   volume_anomaly: 
     path_to_volume_png: '${PATH_TO_TEST_MIDAS}/reports/volumes/' 
     step: 17
-    width_of_bar: 0.00067
+    width_of_bar: 1
     colors: ["r", "b"]
+    number_of_xticks: 10

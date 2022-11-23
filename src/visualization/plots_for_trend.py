@@ -51,6 +51,7 @@ def plot_stock_with_trends(config_path: Text):
     labels = config["reports"]["trend_detection"]["labels"]
     logger.info(f"Will use next labels: {labels}")
     number_of_xticks = config["reports"]["trend_detection"]["number_of_xticks"] 
+    logger.info(f"Number of xticks: {number_of_xticks}")
     all_dates = data["date"]
     step_for_dates = step // number_of_xticks
     logger.info(f"Step for dates: {step_for_dates}")
@@ -85,7 +86,7 @@ def plot_stock_with_trends(config_path: Text):
         indeces = [i+period[0] for i in range(0, step, step_for_dates)]
         plt.xticks(indeces, dates, rotation = 45)
         plt.xlabel("Dates")
-        plt.ylabel("Volume")
+        plt.ylabel("Price")
         plt.title("BTC price with trend definition")
         plt.legend()
         path = main_path + f"trend_{number}.png"
