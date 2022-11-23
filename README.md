@@ -12,7 +12,7 @@
 Dear reviewer, glad to welcome you to this project.
 If you have question about it, please, reach out me in [telegram](https://t.me/belousm).
 
-To test the functionality of the code, try to run it with different configurations, follow these steps:
+To test the functionality of the code, follow these steps:
 >P.S.  In the current version, there are minor problem with the [plots_for_volume.py](https://github.com/belousm/midas/blob/master/src/visualization/plots_for_volume.py) function that plots a volume and upload png files to [report/volumes](https://github.com/belousm/midas/tree/master/reports/volumes). Will be fixed as soon as possible!
 
 ### Structure of project
@@ -119,7 +119,7 @@ poetry run python $(dvc root)/src/{path_to_file} --config=$(dvc root)/params.yam
 ```
 
 ### Model setup
-All parameters for modilng are stored in [params.yaml](https://github.com/belousm/midas/blob/master/params.yaml). So you can easily adjust model parameters.
+All parameters for modilng are stored in [params.yaml](https://github.com/belousm/midas/blob/master/params.yaml). So you can easily adjust it to modify models behavior.
 
 ### Examples of results
 #### Examples for trend
